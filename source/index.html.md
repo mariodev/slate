@@ -36,9 +36,21 @@ api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
 ```python
-import kittn
+headers = {
+    'Authorization': 'Bearer ' + self.get_common_business_api_token(),
+}
 
-api = kittn.authorize('meowmeowmeow')
+params = {
+    'organizationId': org_id
+}
+
+url = "{base}:{port}/users/organizations/{culture_code}/members".format(
+    base=get_esb_server_url(self.umm_region),
+    port=8444,
+    culture_code=culture_code.split('_')[-1],
+)
+
+response = requests.get(url, params=params, headers=headers)
 ```
 
 ```shell
